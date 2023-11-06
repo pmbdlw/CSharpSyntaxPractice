@@ -7,7 +7,14 @@ namespace CSharpTest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(sizeof(int));
+            GenericTest();
+            Console.ReadKey();
+        }
+
+        private static void GenericTest()
+        {
+            var testObj = new GenericStudy();
+            Console.WriteLine(testObj.ShowFullName<Person>("Andrew", "Smith"));
         }
 
         private static void DelegateTest()
