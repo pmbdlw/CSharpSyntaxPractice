@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using CSharpTest.Delegate;
 
 namespace CSharpTest
 {
@@ -7,8 +8,8 @@ namespace CSharpTest
     {
         static void Main(string[] args)
         {
-            GenericTest();
-            Console.ReadKey();
+            DelegateStudy.GeneralDelegatePractice(5,6);
+            Console.ReadLine();
         }
 
         private static void GenericTest()
@@ -49,15 +50,15 @@ namespace CSharpTest
             {
                 Console.Write(arr[10]);
             }
-            catch (IndexOutOfRangeException ex)
+            catch (IndexOutOfRangeException)
             {
                 Console.WriteLine("Index exception.");
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
                 Console.WriteLine("Null reference exception.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Common Exception.");
             }

@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpExcise.Console", "CSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpTest", "CSharpTest\CSharpTest.csproj", "{B4767467-5E8F-424E-8952-5A202DDDF951}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{291943A5-1A38-46FD-B1B4-85F2C2473ACF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{B4767467-5E8F-424E-8952-5A202DDDF951}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4767467-5E8F-424E-8952-5A202DDDF951}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4767467-5E8F-424E-8952-5A202DDDF951}.Release|Any CPU.Build.0 = Release|Any CPU
+		{291943A5-1A38-46FD-B1B4-85F2C2473ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{291943A5-1A38-46FD-B1B4-85F2C2473ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{291943A5-1A38-46FD-B1B4-85F2C2473ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{291943A5-1A38-46FD-B1B4-85F2C2473ACF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
