@@ -1,12 +1,10 @@
 using System.Reflection;
-using Syntax;
 
 namespace CSharpExcise.Console;
 
 public class ServiceProvider
 {
-    public static List<string> GetServices()
-    {
+    public static List<string> GetServices() {
         var result = new List<string>();
         Assembly assembly = Assembly.LoadFrom("Syntax.dll");
         Type[] types = assembly.GetTypes();
