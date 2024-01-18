@@ -4,6 +4,15 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AssemblyName>CSharpExcise.Syntax</AssemblyName>
+        <RootNamespace>CSharpExcise.Syntax</RootNamespace>
+        <PackageId>CSharpExcise.Syntax</PackageId>
+        <Authors>Andrew Liu</Authors>
+        <Company>---</Company>
+        <Product>---</Product>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DocumentationFile>CSharpExcise.xml</DocumentationFile>
     </PropertyGroup>
 
 </Project>

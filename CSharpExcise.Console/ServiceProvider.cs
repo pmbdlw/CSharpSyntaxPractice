@@ -4,6 +4,7 @@ namespace CSharpExcise.Console;
 
 public class ServiceProvider
 {
+    
     public static List<string> GetServices() {
         var result = new List<string>();
         Assembly assembly = Assembly.LoadFrom("Syntax.dll");
