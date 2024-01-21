@@ -7,7 +7,7 @@ public class ServiceProvider
     
     public static List<string> GetServices() {
         var result = new List<string>();
-        Assembly assembly = Assembly.LoadFrom("Syntax.dll");
+        Assembly assembly = Assembly.LoadFrom("CSharpExcise.Syntax.dll");
         Type[] types = assembly.GetTypes();
 
         foreach (Type type in types)
