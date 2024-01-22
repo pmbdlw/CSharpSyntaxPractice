@@ -194,8 +194,6 @@ public static class DataTypes
         // anonymous types
         var anotherPerson = new {Id = 2, Name = "Jane"};
         Console.WriteLine(JsonSerializer.Serialize(anotherPerson));
-
-        // bool isPoint = point1 is (int, int);
     }
     
     public static void BooleanStuff()
