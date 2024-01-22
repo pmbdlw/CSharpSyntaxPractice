@@ -129,9 +129,20 @@ public static class DataTypes
         string cac = string.Create(new CultureInfo("fr-CA"), $"Quantity {v:C}");
     }
 
-    public static void DonymicType()
+    public static void DynamicType()
     {
-        // Nothing
+        // We'd better not use this feature.
+        dynamic anArg = 1;
+        Console.WriteLine(anArg);
+        anArg = "String";
+        Console.WriteLine(anArg);
+        anArg = true;
+        Console.WriteLine(anArg);
+        anArg = 1.2;
+        Console.WriteLine(anArg);
+        anArg = new {Id=1, Name="John"};
+        Console.WriteLine(anArg);
+        
     }
     
     public static void TuplesStuff()
