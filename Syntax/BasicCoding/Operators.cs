@@ -50,19 +50,22 @@ public static class Operators
         JsonDocument testObj = JsonDocument.Parse("{}");
         var testString = testObj!.ToString();
 
-        var score = new Random().Next(1, 100);
+        var score = new Random().Next(59, 100);
+        Console.WriteLine($"Score: {score}");
         switch (score)
         {
-            case 60:
+            case < 60:
                 Console.WriteLine("F");
                 break;
-            case 70:
                 break;
-            case 80:
-            case 90:
+            case < 80:
+                Console.WriteLine("E");
+                break;
+            case < 90:
+                Console.WriteLine("B");
                 break;
             default:
-                Console.WriteLine("None");
+                Console.WriteLine("Awesome！");
                 break;
         }
     }
