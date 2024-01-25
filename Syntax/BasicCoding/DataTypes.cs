@@ -200,4 +200,30 @@ public static class DataTypes
     {
         //Nothing
     }
+
+    public static void Test()
+    {
+        var testIndex = new TestIndex(("xiaohong", "run"), ("xiaohuang", "sleep"));
+        Console.WriteLine($"xiaohuang likes {testIndex["xiaohuang"]._habit}.");
+        Console.WriteLine($"xiaohong likes {testIndex["xiaohong"]._habit}.");
+    }
+}
+
+public class TestIndex
+{
+    // private string _name;
+    // private string _habit;
+    private List<(string _name, string _habit)> _hibitCollection = new List<(string _name, string _habit)>();
+
+    public TestIndex(params (string _name, string _habit)[] hibits)
+    {
+        foreach (var hibit in hibits)
+        {
+            _hibitCollection.Add(hibit);
+        }
+    }
+    public (string _name, string _habit) this[string _name]
+    {
+        get=>_hibitCollection.Find(x=>x._name==_name);
+    }
 }

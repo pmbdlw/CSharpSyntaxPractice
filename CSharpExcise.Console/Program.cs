@@ -2,8 +2,14 @@
 
 using CSharpExcise.Console;
 using CSharpExcise.Syntax.Advanced;
+using CSharpExcise.Syntax.BasicCoding;
+using Microsoft.VisualBasic.CompilerServices;
 
-CollectionKnowledge.IndexTest();
+SetTypes.Test();
+// DictionaryTypes.Test();
+// DataTypes.Test();
+// StackTest.Test();
+// CollectionKnowledge.IndexTest();
 // EnumerableTest.Test();
 // CollectionKnowledge.ArrayListTest();
 // using CSharpExcise.Syntax.BasicCoding;
