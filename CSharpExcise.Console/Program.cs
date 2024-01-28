@@ -4,8 +4,8 @@ using CSharpExcise.Console;
 using CSharpExcise.Syntax.Advanced;
 using CSharpExcise.Syntax.BasicCoding;
 using Microsoft.VisualBasic.CompilerServices;
-
-SetTypes.Test();
+AsyncNAwait.Test();
+// SetTypes.Test();
 // DictionaryTypes.Test();
 // DataTypes.Test();
 // StackTest.Test();
