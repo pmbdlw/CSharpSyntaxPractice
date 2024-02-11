@@ -47,8 +47,8 @@ public static class Operators
         Console.WriteLine(4<<1); // 8
         Console.WriteLine(4>>1); // 2
         
-        JsonDocument testObj = JsonDocument.Parse("{}");
-        var testString = testObj!.ToString();
+//        JsonDocument testObj = JsonDocument.Parse("{}");
+        // var testString = testObj!.ToString();
 
         var score = new Random().Next(59, 100);
         Console.WriteLine($"Score: {score}");
@@ -56,7 +56,6 @@ public static class Operators
         {
             case < 60:
                 Console.WriteLine("F");
-                break;
                 break;
             case < 80:
                 Console.WriteLine("E");

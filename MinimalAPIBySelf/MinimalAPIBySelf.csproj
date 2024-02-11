@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Api\Base\**" />
+    <Compile Remove="Db\Models\**" />
+    <Content Remove="Api\Base\**" />
+    <Content Remove="Db\Models\**" />
+    <EmbeddedResource Remove="Api\Base\**" />
+    <EmbeddedResource Remove="Db\Models\**" />
+    <None Remove="Api\Base\**" />
+    <None Remove="Db\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Api\ArticeController.cs" />
+    <Compile Remove="Api\FileManagerController.cs" />
+    <Compile Remove="Api\ProductController.cs" />
+    <Compile Remove="Api\SlideShowController.cs" />
+    <Compile Remove="Api\SystemManagerController.cs" />
+    <Compile Remove="Api\SysUserController.cs" />
+    <Compile Remove="Db\EFCoreHelper.cs" />
+    <Compile Remove="Db\SqlSugarHelper.cs" />
+    <Compile Remove="Db\SqlSugarMemoryCacheService.cs" />
+    <Compile Remove="Handler\ExceptionHandlingMiddleware.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Db\Models\Base\BaseEntity.cs" />
+    <Compile Include="Db\Models\SysUserEntity.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.OpenApi" Version="1.6.13" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api\" />
+    <Folder Include="Handler\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Db\Models\SysUserEntityConfiguration.cs" />
+  </ItemGroup>
+
+</Project>

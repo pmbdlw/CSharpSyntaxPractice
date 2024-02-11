@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  minimalapisimple:
+    image: ${DOCKER_REGISTRY-}minimalapisimple
+    build:
+      context: .
+      dockerfile: MinimalAPISimple/Dockerfile
