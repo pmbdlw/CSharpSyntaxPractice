@@ -1,9 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using CSharpExcise.Console;
 using CSharpExcise.Syntax.Advanced;
-using CSharpExcise.Syntax.BasicCoding;
-using Microsoft.VisualBasic.CompilerServices;
 AsyncNAwait.Test();
 // SetTypes.Test();
 // DictionaryTypes.Test();

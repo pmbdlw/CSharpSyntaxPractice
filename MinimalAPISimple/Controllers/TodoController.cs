@@ -2,6 +2,7 @@
 
 namespace MinimalAPISimple.Controllers
 {
+    [Route("/todo")]
     public class TodoController : Controller
     {
         public IActionResult Index() {
