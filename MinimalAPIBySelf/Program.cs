@@ -66,7 +66,7 @@ builder.Services.AddAuthorizationBuilder()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "企业官网Api", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "CMS API", Version = "v1" });
 
     // 添加身份验证
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -132,7 +132,7 @@ app.UseSwaggerUI(c =>
 //app.MapGet("/seed", async () =>
 app.MapGet("/seed", () =>
 {
-    var db = new CmsContext();
+    // var db = new CmsContext();
     
     //db.CodeFirst.InitTables<SysUserEntity>();
 

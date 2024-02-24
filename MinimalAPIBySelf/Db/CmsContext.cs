@@ -6,9 +6,9 @@ namespace MinimalAPIBySelf.Db;
 
 public class CmsContext : DbContext
 {
-    public CmsContext()
+    public CmsContext(DbContextOptions<CmsContext> options):base(options)
     {
-        
+        Database.MigrateAsync();
     }
     public DbSet<SysUserEntity>? SysUser { get; set; }
 
@@ -21,7 +21,7 @@ public class CmsContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         options.UseSqlServer(AppConfig.Settings?.DbConnectionStrings);
-        return;
+        
     }
 }
 
