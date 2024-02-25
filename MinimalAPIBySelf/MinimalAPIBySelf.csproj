@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Db\Models\Base\BaseEntity.cs" />
     <Compile Include="Db\Models\SysUserEntity.cs" />
+    <Compile Include="Db\Models\SysUserEntityConfiguration.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,10 +57,6 @@
   <ItemGroup>
     <Folder Include="Api\" />
     <Folder Include="Handler\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Db\Models\SysUserEntityConfiguration.cs" />
   </ItemGroup>
 
 </Project>
