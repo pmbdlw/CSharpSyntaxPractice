@@ -30,4 +30,9 @@ public class SysUserEntity : BaseEntity
     /// 为true的时候禁止登录
     /// </summary>
     public bool IsBan { get; set; } = false;
+
+    /// <summary>
+    /// User's role. Visitor is the base role for every user.
+    /// </summary>
+    public string Role { get; set; } = "visitor";
 }

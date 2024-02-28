@@ -8,7 +8,11 @@ namespace MinimalAPIBySelf.Db.Models;
 /// </summary>
 public class SysUserEntityConfiguration : IEntityTypeConfiguration<SysUserEntity>
 {
-    public void Configure(EntityTypeBuilder<SysUserEntity> builder) {
-        
+    public void Configure(EntityTypeBuilder<SysUserEntity> builder)
+    {
+        builder.Property(e => e.Id).UseIdentityColumn();
+        builder.HasData(
+            new SysUserEntity { Id = -10000,UserName = "admin1", UsePwd = "111111" }
+        );
     }
 }

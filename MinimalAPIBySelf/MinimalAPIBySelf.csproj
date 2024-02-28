@@ -8,7 +8,6 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <SatelliteResourceLanguages>false</SatelliteResourceLanguages>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Api\Base\**" />
     <Compile Remove="Db\Models\**" />
@@ -19,26 +18,26 @@
     <None Remove="Api\Base\**" />
     <None Remove="Db\Models\**" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Remove="Api\ArticeController.cs" />
     <Compile Remove="Api\FileManagerController.cs" />
     <Compile Remove="Api\ProductController.cs" />
     <Compile Remove="Api\SlideShowController.cs" />
     <Compile Remove="Api\SystemManagerController.cs" />
-    <Compile Remove="Api\SysUserController.cs" />
     <Compile Remove="Db\EFCoreHelper.cs" />
     <Compile Remove="Db\SqlSugarHelper.cs" />
     <Compile Remove="Db\SqlSugarMemoryCacheService.cs" />
     <Compile Remove="Handler\ExceptionHandlingMiddleware.cs" />
   </ItemGroup>
 
+
   <ItemGroup>
+    <Compile Include="Api\Base\BaseApi.cs" />
     <Compile Include="Db\Models\Base\BaseEntity.cs" />
     <Compile Include="Db\Models\SysUserEntity.cs" />
     <Compile Include="Db\Models\SysUserEntityConfiguration.cs" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.2" />
@@ -49,13 +48,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.OpenApi" Version="1.6.13" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Api\" />
     <Folder Include="Handler\" />
   </ItemGroup>
 

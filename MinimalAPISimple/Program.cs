@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using MinimalAPISimple;
 
 var builder = WebApplication.CreateBuilder(args); //.CreateSlimBuilder(args);

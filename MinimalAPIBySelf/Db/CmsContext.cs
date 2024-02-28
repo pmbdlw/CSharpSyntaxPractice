@@ -4,11 +4,13 @@ using System.Reflection.Metadata;
 
 namespace MinimalAPIBySelf.Db;
 
+/// <inheritdoc />
 public class CmsContext : DbContext
 {
-    public CmsContext(DbContextOptions<CmsContext> options):base(options)
+    /// <inheritdoc />
+    public CmsContext()
     {
-        Database.MigrateAsync();
+        // Database.MigrateAsync();//.EnsureCreated();
     }
     public DbSet<SysUserEntity>? SysUser { get; set; }
 
@@ -21,7 +23,5 @@ public class CmsContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         options.UseSqlServer(AppConfig.Settings?.DbConnectionStrings);
-        
     }
 }
-

@@ -1,18 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using SqlSugar;
-using System.Xml.Linq;
 using Microsoft.Extensions.Caching.Memory;
-using System.Security.Cryptography;
-using WaiBao.Db.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using MinimalAPIBySelf.Db;
+using MinimalAPIBySelf.Db.Models;
 
-namespace WaiBao.Api;
+namespace MinimalAPIBySelf.Api;
 
 #region FastEndpoints 简单测试
 
@@ -53,14 +50,15 @@ public class SysUserController : BaseApi
     public SysUserController(IMemoryCache memoryCache)
     {
         _memoryCache = memoryCache;
-    }
+        _context = new CmsContext();
+    } 
 
     /// <summary>
     /// 检测Token信息
     /// </summary>
     /// <returns></returns>
     [Microsoft.AspNetCore.Mvc.HttpGet]
-    [Authorize(Policy = "AdminOnly", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Policy = "AdminOnly")]//, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public ApiResult CheckToken() => Success($"当前Token用户是:{GetCurrentTokenName()}");
 
     /// <summary>
@@ -71,8 +69,17 @@ public class SysUserController : BaseApi
     [HttpPost, Authorize]
     public async Task<ApiResult> GetPage([FromBody] ReqPage model)
     {
-        var lst = await GetPage<SysUserEntity>(model, true, a => a.UserName.Contains(model.Key));
-        return Success(lst);
+        var lst = (_context as CmsContext).SysUser
+            .OrderBy(e => e.Id)
+            .Skip((model.PageNumber - 1) * model.PageSize)
+            .Take(model.PageSize)
+            .ToList();
+        //await GetPage<SysUserEntity>(model, true, a => a.UserName.Contains(model.Key));
+        ResPage<SysUserEntity> result = new ResPage<SysUserEntity>();
+        result.PageSize = model.PageSize;
+        result.PageNumber = model.PageNumber;
+        result.Data = lst;
+        return Success(result);
     }
 
     /// <summary>
@@ -84,34 +91,35 @@ public class SysUserController : BaseApi
     public async Task<ApiResult> AddSysUser([FromBody] SysUserEntity model)
     {
         model.UsePwd = Encrypt(model.UsePwd);
-        await db.Insertable<SysUserEntity>(model).ExecuteCommandAsync();
+        (_context as CmsContext).SysUser.AddAsync(model);
+        (_context as CmsContext).SaveChangesAsync();
         return Success("添加成功");
     }
 
-    /// <summary>
-    /// 解封账号
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    [HttpGet, Authorize]
-    public async Task<ApiResult> UnBan(int id)
-    {
-        var hasAccount = await db.Queryable<SysUserEntity>().Where(a => a.Id == id).FirstAsync();
-        if (hasAccount == null) return Error("该用户不存在");
-
-        //解除数据库
-        hasAccount.IsBan = false;
-        await db.Updateable<SysUserEntity>(hasAccount).ExecuteCommandAsync();
-
-        //解除内存缓存控制
-        _memoryCache.Remove(hasAccount.UserName);
-
-        //通知操作
-        NoticeAdminEmail($"对 {hasAccount.UserName}的封禁，已经于 {DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒")} 由 {GetCurrentTokenName()} 解除");
-
-        return Success(null);
-    }
-
+    // /// <summary>
+    // /// 解封账号
+    // /// </summary>
+    // /// <param name="id"></param>
+    // /// <returns></returns>
+    // [HttpGet, Authorize]
+    // public async Task<ApiResult> UnBan(int id)
+    // {
+    //     var hasAccount = await db.Queryable<SysUserEntity>().Where(a => a.Id == id).FirstAsync();
+    //     if (hasAccount == null) return Error("该用户不存在");
+    //
+    //     //解除数据库
+    //     hasAccount.IsBan = false;
+    //     await db.Updateable<SysUserEntity>(hasAccount).ExecuteCommandAsync();
+    //
+    //     //解除内存缓存控制
+    //     _memoryCache.Remove(hasAccount.UserName);
+    //
+    //     //通知操作
+    //     NoticeAdminEmail($"对 {hasAccount.UserName}的封禁，已经于 {DateTime.Now.ToString("yyyy年MM月dd日 HH时mm分ss秒")} 由 {GetCurrentTokenName()} 解除");
+    //
+    //     return Success(null);
+    // }
+    //
     /// <summary>
     /// 登录
     /// </summary>
@@ -123,36 +131,34 @@ public class SysUserController : BaseApi
     {
         var replyVal = _memoryCache.Get<int>(model.UserName);
         string pwd = Encrypt(model.UsePwd);
-        if (replyVal >= 10)
-        {
-
-            var hasAccount = await db.Queryable<SysUserEntity>().Where(a => !a.IsBan && a.UsePwd == pwd && a.UserName == model.UserName).FirstAsync();
-            if (hasAccount != null)
-            {
-                hasAccount.IsBan = true;
-                await db.Updateable<SysUserEntity>(hasAccount).ExecuteCommandAsync();
-            }
-
-            NoticeAdminEmail($"{model.UserName} 于 {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} 因三小时内账号连续输入错误密码而被禁止登录");
-            return Error("三小时内账号密码已经连续输入错误10次，已禁止登录，请联系管理员");
-        }
-
-
-
-        var loginResult = await db.Queryable<SysUserEntity>().Where(a => !a.IsBan && a.UsePwd == pwd && a.UserName == model.UserName).AnyAsync();
-
+        // if (replyVal >= 10)
+        // {
+        //
+        //     var hasAccount = await db.Queryable<SysUserEntity>().Where(a => !a.IsBan && a.UsePwd == pwd && a.UserName == model.UserName).FirstAsync();
+        //     if (hasAccount != null)
+        //     {
+        //         hasAccount.IsBan = true;
+        //         await db.Updateable<SysUserEntity>(hasAccount).ExecuteCommandAsync();
+        //     }
+        //
+        //     NoticeAdminEmail($"{model.UserName} 于 {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} 因三小时内账号连续输入错误密码而被禁止登录");
+        //     return Error("三小时内账号密码已经连续输入错误10次，已禁止登录，请联系管理员");
+        // }
+    
+        var loginResult = await (_context as CmsContext).SysUser.AnyAsync(a => !a.IsBan && a.UsePwd == pwd && a.UserName == model.UserName);
+    
         // 验证用户名和密码
         if (!loginResult)
         {
             _memoryCache.Set<int>(model.UserName, replyVal += 1, TimeSpan.FromHours(3));
             return Error($"账号密码错误,你还有{10 - replyVal}次机会");
         }
-
+    
         _memoryCache.Remove(model.UserName);
-
+    
         // 生成 JWT 令牌
         var tokenHandler = new JwtSecurityTokenHandler();
-
+    
         var key = Encoding.ASCII.GetBytes(AppConfig.Settings.JwtSecurityKey);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
@@ -168,13 +174,13 @@ public class SysUserController : BaseApi
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
             Issuer = AppConfig.Settings.JwtIssuer,
             Audience = AppConfig.Settings.JwtAudience,
-
+    
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         var tokenString = tokenHandler.WriteToken(token);
-
+    
         //邮件通知
-        NoticeAdminEmail($"{model.UserName} 于 {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} 登录了网站后台");
+        // NoticeAdminEmail($"{model.UserName} 于 {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")} 登录了网站后台");
         // 返回 JWT 令牌
         return Success(new { token = "Bearer " + tokenString });
     }
@@ -186,14 +192,14 @@ public class SysUserController : BaseApi
     /// </summary>
     /// <param name="body"></param>
     /// <param name="mailTo"></param>
-    [HttpGet, Authorize]
-    public void SendEmail(string body = "我是171测试邮箱", string mailTo = "prcknightning@gmail.com", string subject = "你有一个新的通知")
-    {
-        var email = new Email(recipientEmail: mailTo, subject: subject ?? AppConfig.EmailSetting.Subject, body);
-        var sender = new EmailSender(AppConfig.EmailSetting.SmptServer, 465, senderEmail: AppConfig.EmailSetting.SenderEmail, senderPassword: AppConfig.EmailSetting.SenderPassword);
-
-        sender.SendEmail(email);
-    }
+    // [HttpGet, Authorize]
+    // public void SendEmail(string body = "我是171测试邮箱", string mailTo = "prcknightning@gmail.com", string subject = "你有一个新的通知")
+    // {
+    //     var email = new Email(recipientEmail: mailTo, subject: subject ?? AppConfig.EmailSetting.Subject, body);
+    //     var sender = new EmailSender(AppConfig.EmailSetting.SmptServer, 465, senderEmail: AppConfig.EmailSetting.SenderEmail, senderPassword: AppConfig.EmailSetting.SenderPassword);
+    //
+    //     sender.SendEmail(email);
+    // }
 
     #endregion
 }
