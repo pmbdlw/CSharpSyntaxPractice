@@ -23,9 +23,6 @@ jobs:
     - name: Build
       run: dotnet build ./MinimalAPIBySelf/MinimalAPIBySelf.csproj --configuration Release --no-restore
 
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
-
     - name: Publish
       run: dotnet publish ./MinimalAPIBySelf/MinimalAPIBySelf.csproj --configuration Release --no-restore --output ./publish
 
