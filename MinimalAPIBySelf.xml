@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MinimalAPIBySelf</name>
+    </assembly>
+    <members>
+        <member name="T:MinimalAPIBySelf.Api.SysUserController">
+            <summary>
+            系统用户
+            </summary>
+        </member>
+        <member name="M:MinimalAPIBySelf.Api.SysUserController.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="memoryCache"></param>
+        </member>
+        <member name="M:MinimalAPIBySelf.Api.SysUserController.CheckToken">
+            <summary>
+            检测Token信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MinimalAPIBySelf.Api.SysUserController.GetPage(MinimalAPIBySelf.Api.ReqPage)">
+            <summary>
+            获取用户列表分页
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MinimalAPIBySelf.Api.SysUserController.AddSysUser(MinimalAPIBySelf.Db.Models.SysUserEntity)">
+            <summary>
+            添加系统用户
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MinimalAPIBySelf.Api.SysUserController.Login(MinimalAPIBySelf.Db.Models.SysUserEntity)">
+            <summary>
+            登录
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MinimalAPIBySelf.Api.BaseApi">
+            <summary>
+            基类Api
+            </summary>
+        </member>
+        <member name="M:MinimalAPIBySelf.Api.BaseApi.GetCurrentTokenName">
+            <summary>
+            检测Token信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MinimalAPIBySelf.Api.ApiResult.Code">
+            <summary>
+            -1 异常失败
+            0 正常
+            6: 未授权
+            9：请求方法错误
+            
+            tip：为啥这么搞？增加一点可有可无的安全性
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.AppSettings.WebUrl">
+            <summary>
+            当前站点url链接
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.AppSettings.DefaultAccount">
+            <summary>
+            默认账号
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.AppSettings.DefaultPwd">
+            <summary>
+            默认密码
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.AppSettings.AdminEmail">
+            <summary>
+            管理员邮箱
+            </summary>
+        </member>
+        <member name="T:MinimalAPIBySelf.Db.CmsContext">
+            <inheritdoc />
+        </member>
+        <member name="M:MinimalAPIBySelf.Db.CmsContext.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="T:MinimalAPIBySelf.Db.Models.ArticleEntity">
+            <summary>
+            文章-包括关于我们
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.NetxtId">
+            <summary>
+            下一个
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.NextArticle">
+            <summary>
+            下一个文章信息
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.PreviousId">
+            <summary>
+            上一个
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.PreviousArticle">
+            <summary>
+            上一个文章信息
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.Sort">
+            <summary>
+            序号
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.Type">
+            <summary>
+            文章类型 0：普通文章 211:关于我们  212：网站底部信息 213：备案号
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.CreatorId">
+            <summary>
+            Creator ID
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.ArticleEntity.Creator">
+            <summary>
+            Creator
+            </summary>
+        </member>
+        <member name="T:MinimalAPIBySelf.Db.Models.BaseEntity">
+            <summary>
+            数据库实体基类
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.BaseEntity.Id">
+            <summary>
+            主键ID
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.BaseEntity.Ver">
+            <summary>
+            标识版本字段,用于乐观锁
+            </summary>
+        </member>
+        <member name="T:MinimalAPIBySelf.Db.Models.SysUserEntity">
+            <summary>
+            系统管理员
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.SysUserEntity.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.SysUserEntity.UsePwd">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.SysUserEntity.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.SysUserEntity.IsBan">
+            <summary>
+            为true的时候禁止登录
+            </summary>
+        </member>
+        <member name="P:MinimalAPIBySelf.Db.Models.SysUserEntity.Role">
+            <summary>
+            User's role. Visitor is the base role for every user.
+            </summary>
+        </member>
+        <member name="T:MinimalAPIBySelf.Db.Models.SysUserEntityConfiguration">
+            <summary>
+            SysUser Entity Config
+            </summary>
+        </member>
+        <member name="T:MinimalAPIBySelf.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:MinimalAPIBySelf.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MinimalAPIBySelf.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MinimalAPIBySelf.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:MinimalAPIBySelf.Migrations.AddRolePropertyToSysUser">
+            <inheritdoc />
+        </member>
+        <member name="M:MinimalAPIBySelf.Migrations.AddRolePropertyToSysUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MinimalAPIBySelf.Migrations.AddRolePropertyToSysUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MinimalAPIBySelf.Migrations.AddRolePropertyToSysUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
