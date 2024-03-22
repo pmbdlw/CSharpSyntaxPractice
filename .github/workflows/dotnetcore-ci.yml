@@ -1,27 +1,35 @@
-name: ASP.NET Core CI
+name: .NET Core Deploy
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '8.0.x'
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 8.0.3
 
-      - name: Restore dependencies
-        run: dotnet restore
+    - name: Install dependencies
+      run: dotnet restore
 
-      - name: Build and test
-        run: dotnet build --configuration Release --no-restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+
+    - name: Publish
+      run: dotnet publish --configuration Release --no-restore --output ./publish
+
+    - name: Deploy
+      uses: some-deploy-action@v1
+      with:
+        some-parameter: some-value
