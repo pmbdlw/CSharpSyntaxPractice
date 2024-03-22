@@ -107,8 +107,6 @@ builder.Services.AddSwaggerGen(c =>
 #endregion
 
 #endregion
-
-
 var app = builder.Build();
 
 #region Use swagger

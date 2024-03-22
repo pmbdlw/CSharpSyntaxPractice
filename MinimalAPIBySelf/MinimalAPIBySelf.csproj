@@ -33,7 +33,10 @@
 
   <ItemGroup>
     <Compile Include="Api\Base\BaseApi.cs" />
+    <Compile Include="Db\Models\ArticleEntity.cs" />
+    <Compile Include="Db\Models\ArticleEntityConfiguration.cs" />
     <Compile Include="Db\Models\Base\BaseEntity.cs" />
+    <Compile Include="Db\Models\ReqArticle.cs" />
     <Compile Include="Db\Models\SysUserEntity.cs" />
     <Compile Include="Db\Models\SysUserEntityConfiguration.cs" />
   </ItemGroup>
