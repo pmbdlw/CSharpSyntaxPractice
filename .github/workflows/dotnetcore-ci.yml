@@ -3,6 +3,8 @@ name: .NET Core Deploy
 on:
   push:
     branches: [ master ]
+permissions:
+  contents: write
 
 jobs:
   build:
