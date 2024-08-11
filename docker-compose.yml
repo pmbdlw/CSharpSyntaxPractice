@@ -6,3 +6,9 @@ services:
     build:
       context: .
       dockerfile: MinimalAPISimple/Dockerfile
+
+  codefirstlearning.webapi:
+    image: codefirstlearning.webapi
+    build:
+      context: .
+      dockerfile: CodeFirstLearning.Webapi/Dockerfile

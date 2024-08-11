@@ -1,7 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using CSharpExcise.Console;
 using CSharpExcise.Syntax.Advanced;
-AsyncNAwait.Test();
+
+var pc = new PalindromeChecker();
+pc.CheckTest();
 // SetTypes.Test();
 // DictionaryTypes.Test();
 // DataTypes.Test();

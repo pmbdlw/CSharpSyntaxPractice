@@ -19,6 +19,16 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalAPIBySelf", "MinimalAPIBySelf\MinimalAPIBySelf.csproj", "{EF429569-37C1-4E9D-8E55-B5C54A1D5D60}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeFirstLearning", "CodeFirstLearning", "{700FC19A-E417-4B19-92CB-F1833234CD3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstLearning.Domain", "CodeFirstLearning.Domain\CodeFirstLearning.Domain.csproj", "{42D7B1B9-ECBE-4522-B9AD-05E41A100003}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstLearning.Infrastructure", "CodeFirstLearning.Infrastructure\CodeFirstLearning.Infrastructure.csproj", "{5696F441-B96B-4A5F-ADCB-361D3E657D0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstLearning.Webapi", "CodeFirstLearning.Webapi\CodeFirstLearning.Webapi.csproj", "{7AC143D3-5279-4145-93AC-F9F055E7270B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstLearning.Application", "CodeFirstLearning.Application\CodeFirstLearning.Application.csproj", "{3C674E3B-C00E-4238-810C-83C6CC2EB9DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +59,22 @@ Global
 		{EF429569-37C1-4E9D-8E55-B5C54A1D5D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF429569-37C1-4E9D-8E55-B5C54A1D5D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF429569-37C1-4E9D-8E55-B5C54A1D5D60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42D7B1B9-ECBE-4522-B9AD-05E41A100003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42D7B1B9-ECBE-4522-B9AD-05E41A100003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42D7B1B9-ECBE-4522-B9AD-05E41A100003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42D7B1B9-ECBE-4522-B9AD-05E41A100003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5696F441-B96B-4A5F-ADCB-361D3E657D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5696F441-B96B-4A5F-ADCB-361D3E657D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5696F441-B96B-4A5F-ADCB-361D3E657D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5696F441-B96B-4A5F-ADCB-361D3E657D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC143D3-5279-4145-93AC-F9F055E7270B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC143D3-5279-4145-93AC-F9F055E7270B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC143D3-5279-4145-93AC-F9F055E7270B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC143D3-5279-4145-93AC-F9F055E7270B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C674E3B-C00E-4238-810C-83C6CC2EB9DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C674E3B-C00E-4238-810C-83C6CC2EB9DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C674E3B-C00E-4238-810C-83C6CC2EB9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C674E3B-C00E-4238-810C-83C6CC2EB9DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +85,10 @@ Global
 		{5A3D6F56-B30C-40E2-AC3E-45C20A96453D} = {2A1EDF3E-4384-425D-B987-9C641443DA8A}
 		{6E48B46B-EC01-4ED5-82BA-521B76C1AC81} = {2A1EDF3E-4384-425D-B987-9C641443DA8A}
 		{EF429569-37C1-4E9D-8E55-B5C54A1D5D60} = {2A1EDF3E-4384-425D-B987-9C641443DA8A}
+		{42D7B1B9-ECBE-4522-B9AD-05E41A100003} = {700FC19A-E417-4B19-92CB-F1833234CD3C}
+		{5696F441-B96B-4A5F-ADCB-361D3E657D0E} = {700FC19A-E417-4B19-92CB-F1833234CD3C}
+		{7AC143D3-5279-4145-93AC-F9F055E7270B} = {700FC19A-E417-4B19-92CB-F1833234CD3C}
+		{3C674E3B-C00E-4238-810C-83C6CC2EB9DF} = {700FC19A-E417-4B19-92CB-F1833234CD3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6D9436B-D67E-44C4-8850-3517A85F6E1C}

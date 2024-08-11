@@ -37,6 +37,9 @@ AppConfig.Settings = appSettings;
 
 #region 授权鉴权
 
+builder.Services.AddDbContext<CmsContext>(
+    builder=>builder.UseSqlServer(appSettings.DbConnectionStrings))
+    .AddDbContext<CmsContext>();
 // 添加身份验证和授权中间件
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -142,15 +145,16 @@ app.UseEndpoints(configure: endpoints =>
 //var db = SqlSugarHelper.Db;
 //数据库初始化,只初始化数据
 //app.MapGet("/seed", async () =>
+
 app.MapGet("/seed", async (string uname, string passwd) =>
 {
-    using (var context = new CmsContext())
+    using (var context = app.Services.GetService<CmsContext>()) //options=>options.UseMySql(AppConfig.Settings.DbConnectionStrings)))
     {
         var database = context.Database;
 
         string name = uname;
-        string password = new BaseApi().Encrypt(passwd);
-        var loginResult = await context.SysUser.AnyAsync(e => e.UserName == name && e.UsePwd == password);
+        string password = new BaseApi(context).Encrypt(passwd);
+        var loginResult = await context?.SysUser.AnyAsync(e => e.UserName == name && e.UsePwd == password);
         if (!loginResult)
         {
             await context.SysUser.AddAsync(new SysUserEntity()

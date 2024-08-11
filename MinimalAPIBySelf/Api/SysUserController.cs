@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Dumpify;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Caching.Memory;
@@ -42,15 +43,13 @@ namespace MinimalAPIBySelf.Api;
 public class SysUserController : BaseApi
 {
     protected IMemoryCache _memoryCache;
-
     /// <summary>
     /// 构造函数
     /// </summary>
     /// <param name="memoryCache"></param>
-    public SysUserController(IMemoryCache memoryCache)
+    public SysUserController(IMemoryCache memoryCache,CmsContext _context):base(_context)
     {
         _memoryCache = memoryCache;
-        _context = new CmsContext();
     } 
 
     /// <summary>
@@ -69,7 +68,8 @@ public class SysUserController : BaseApi
     [HttpPost, Authorize]
     public async Task<ApiResult> GetPage([FromBody] ReqPage model)
     {
-        var lst = (_context as CmsContext).SysUser
+        var curContext = (_context as CmsContext).SysUser;
+        var lst = curContext
             .OrderBy(e => e.Id)
             .Skip((model.PageNumber - 1) * model.PageSize)
             .Take(model.PageSize)
@@ -79,6 +79,7 @@ public class SysUserController : BaseApi
         result.PageSize = model.PageSize;
         result.PageNumber = model.PageNumber;
         result.Data = lst;
+        curContext.Dump();
         return Success(result);
     }
 

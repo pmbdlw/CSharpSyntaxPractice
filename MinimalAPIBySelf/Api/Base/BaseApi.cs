@@ -11,6 +11,11 @@ namespace MinimalAPIBySelf.Api
     public class BaseApi : ControllerBase
     {
         protected DbContext _context;
+
+        public BaseApi(DbContext context)
+        {
+            _context = context;
+        }
         // #region Orm封装
         //
         // #region 保存
