@@ -9,7 +9,7 @@
             系统用户
             </summary>
         </member>
-        <member name="M:MinimalAPIBySelf.Api.SysUserController.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+        <member name="M:MinimalAPIBySelf.Api.SysUserController.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache,MinimalAPIBySelf.Db.CmsContext)">
             <summary>
             构造函数
             </summary>
@@ -86,7 +86,7 @@
         <member name="T:MinimalAPIBySelf.Db.CmsContext">
             <inheritdoc />
         </member>
-        <member name="M:MinimalAPIBySelf.Db.CmsContext.#ctor">
+        <member name="M:MinimalAPIBySelf.Db.CmsContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
             <inheritdoc />
         </member>
         <member name="T:MinimalAPIBySelf.Db.Models.ArticleEntity">
