@@ -36,6 +36,7 @@ public static class PostSystemServiceExtension
         // services.AddScoped<ITagRepository, TagRepository>();
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(CreatePostCommand).Assembly));
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(CreatePostCommand).Assembly));
         return services;
     }
 }
