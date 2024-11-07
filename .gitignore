@@ -9,3 +9,4 @@ riderModule.iml
 /.vs
 CSharpExcise.xml
 .DS_Store
+*.user
